@@ -5,7 +5,8 @@
 
 axios.get('https://api.github.com/users/shaunorpen')
   .then(({data}) => {
-    // debugger
+    debugger
+    document.querySelector('.cards').appendChild(createCard(data));
   })
   .catch(error => {
     // debugger
@@ -20,6 +21,8 @@ axios.get('https://api.github.com/users/shaunorpen')
 
 function createCard (data) {
   const card = document.createElement('div');
+  const profilePictureDiv = document.createElement('div');
+  const userDetailsDiv = document.createElement('div');
   const profilePicture = document.createElement('img');
   const name = document.createElement('p');
   const username = document.createElement('p');
@@ -32,24 +35,26 @@ function createCard (data) {
   profilePicture.src = data.avatar_url;
   name.textContent = data.name;
   username.textContent = data.login;
-  location.textContent = data.location;
-  profileUrl.textContent = data.html_url;
-  followers.textContent = data.followers;
-  following.textContent = data.following;
-  bio.textContent = data.bio;
+  location.textContent = 'Location: ' + data.location;
+  profileUrl.textContent = 'Profile: ' + data.html_url;
+  followers.textContent = 'Followers: ' + data.followers;
+  following.textContent = 'Following: ' + data.following;
+  bio.textContent = 'Bio: ' + data.bio;
 
   card.classList.add('card');
   name.classList.add('name');
   username.classList.add('username');
 
-  card.appendChild(profilePicture);
-  card.appendChild(name);
-  card.appendChild(username);
-  card.appendChild(location);
-  card.appendChild(profileUrl);
-  card.appendChild(followers);
-  card.appendChild(following);
-  card.appendChild(bio);
+  card.appendChild(profilePictureDiv);
+  profilePictureDiv.appendChild(profilePicture);
+  card.appendChild(userDetailsDiv);
+  userDetailsDiv.appendChild(name);
+  userDetailsDiv.appendChild(username);
+  userDetailsDiv.appendChild(location);
+  userDetailsDiv.appendChild(profileUrl);
+  userDetailsDiv.appendChild(followers);
+  userDetailsDiv.appendChild(following);
+  userDetailsDiv.appendChild(bio);
 
   return card;
 }
