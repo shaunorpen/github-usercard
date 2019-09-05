@@ -5,10 +5,10 @@
 
 axios.get('https://api.github.com/users/shaunorpen')
   .then(({data}) => {
-    debugger
+    // debugger
   })
   .catch(error => {
-    debugger
+    // debugger
   });  
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -28,6 +28,15 @@ function createCard (data) {
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
+
+  profilePicture.src = data.avatar_url;
+  name.textContent = data.name;
+  username.textContent = data.login;
+  location.textContent = data.location;
+  profileUrl.textContent = data.html_url;
+  followers.textContent = data.followers;
+  following.textContent = data.following;
+  bio.textContent = data.bio;
 
   card.classList.add('card');
   name.classList.add('name');
