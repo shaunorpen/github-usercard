@@ -5,11 +5,10 @@
 
 axios.get('https://api.github.com/users/shaunorpen')
   .then(({data}) => {
-    debugger
     document.querySelector('.cards').appendChild(createCard(data));
   })
   .catch(error => {
-    // debugger
+    console.log('URL:  ' + error.config.url + ' errored with message: ' + error.message + '.');
   });  
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -73,7 +72,23 @@ function createCard (data) {
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  'https://api.github.com/users/tetondan',
+  'https://api.github.com/users/dustinmyers',
+  'https://api.github.com/users/justsml',
+  'https://api.github.com/users/luishrd',
+  'https://api.github.com/users/bigknell',
+];
+
+followersArray.forEach(follower => {
+  axios.get(follower)
+  .then(({data}) => {
+    document.querySelector('.cards').appendChild(createCard(data));
+  })
+  .catch(error => {
+    console.log('URL:  ' + error.config.url + ' errored with message: ' + error.message + '.');
+  });
+})
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
