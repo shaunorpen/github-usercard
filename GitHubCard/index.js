@@ -27,6 +27,7 @@ function createCard (data) {
   const username = document.createElement('p');
   const location = document.createElement('p');
   const profileUrl = document.createElement('p');
+  const profileUrlLink = document.createElement('a');
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
@@ -35,7 +36,9 @@ function createCard (data) {
   name.textContent = data.name;
   username.textContent = data.login;
   location.textContent = 'Location: ' + data.location;
-  profileUrl.textContent = 'Profile: ' + data.html_url;
+  profileUrl.innerHTML = 'Profile: ';
+  profileUrlLink.href = data.html_url;
+  profileUrlLink.textContent = data.html_url;
   followers.textContent = 'Followers: ' + data.followers;
   following.textContent = 'Following: ' + data.following;
   bio.textContent = 'Bio: ' + data.bio;
@@ -43,6 +46,7 @@ function createCard (data) {
   card.classList.add('card');
   name.classList.add('name');
   username.classList.add('username');
+  userDetailsDiv.classList.add('card-info');
 
   card.appendChild(profilePictureDiv);
   profilePictureDiv.appendChild(profilePicture);
@@ -51,6 +55,7 @@ function createCard (data) {
   userDetailsDiv.appendChild(username);
   userDetailsDiv.appendChild(location);
   userDetailsDiv.appendChild(profileUrl);
+  profileUrl.appendChild(profileUrlLink);
   userDetailsDiv.appendChild(followers);
   userDetailsDiv.appendChild(following);
   userDetailsDiv.appendChild(bio);
