@@ -4,7 +4,7 @@
 */
 
 axios.get('https://api.github.com/users/shaunorpen')
-  .then(response => {
+  .then(({data}) => {
     debugger
   })
   .catch(error => {
@@ -17,6 +17,33 @@ axios.get('https://api.github.com/users/shaunorpen')
 
    Skip to Step 3.
 */
+
+function createCard (data) {
+  const card = document.createElement('div');
+  const profilePicture = document.createElement('img');
+  const name = document.createElement('p');
+  const username = document.createElement('p');
+  const location = document.createElement('p');
+  const profileUrl = document.createElement('p');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+
+  card.classList.add('card');
+  name.classList.add('name');
+  username.classList.add('username');
+
+  card.appendChild(profilePicture);
+  card.appendChild(name);
+  card.appendChild(username);
+  card.appendChild(location);
+  card.appendChild(profileUrl);
+  card.appendChild(followers);
+  card.appendChild(following);
+  card.appendChild(bio);
+
+  return card;
+}
 
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
